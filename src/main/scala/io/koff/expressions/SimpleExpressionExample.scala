@@ -60,6 +60,4 @@ object SimpleExpressionExample extends App {
   }
 
   println("autoExtract: " + Await.result(autoExtract(), 30 seconds))
-
-  def expressionIfExample(): Future[String] =
 }
