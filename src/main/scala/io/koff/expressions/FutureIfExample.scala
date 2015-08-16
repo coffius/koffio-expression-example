@@ -56,9 +56,11 @@ object FutureIfExample extends App {
    * In this example `failedFuture()` from B-branch will never be called.
    */
   def expressionIf(): Future[String] = {
+    //we can use extract(trueFuture())
+    //or we can import Expression.auto.extract instead
     import com.github.jedesah.Expression.auto.extract
     Expression[Future, String] {
-      if(extract(trueFuture())) {
+      if(trueFuture()) {
         //A-branch
         resultCalc(normalFuture(), longFuture())
       } else {
