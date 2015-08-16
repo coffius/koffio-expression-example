@@ -10,7 +10,6 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 
-
 object ExpressionExample extends App {
 
   def future1(): Future[String] = {
@@ -25,15 +24,10 @@ object ExpressionExample extends App {
     str1 + " | " + str2
   }
 
-  val resultFunc: (String, String) => String = resultCalc
-
-  val futureResult1: Future[String] = future1()
-  val futureResult2: Future[String] = future2()
-
   val result = Expression[Future, String] {
-    val result1 = extract(futureResult1)
-    val result2 = extract(futureResult2)
-    resultFunc(result1, result2)
+    val result1 = extract(future1())
+    val result2 = extract(future2())
+    resultCalc(result1, result2)
   }
 
   println(Await.result(result, 30 seconds))
