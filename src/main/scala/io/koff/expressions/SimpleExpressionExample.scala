@@ -10,7 +10,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 
-object ExpressionExample extends App {
+object SimpleExpressionExample extends App {
 
   def future1(): Future[String] = {
     Future.successful("future1")
