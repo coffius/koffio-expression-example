@@ -37,11 +37,15 @@ object SimpleExpressionExample extends App {
   /**
    * For-Comprehension analog for `expression()` method
    */
-  def forComprehension(): Future[String] = for {
-    result1 <- future1()
-    result2 <- future2()
-  } yield {
+  def forComprehension(): Future[String] = {
+    val fut1 = future1()
+    val fut2 = future2()
+    for {
+      result1 <- fut1
+      result2 <- fut2
+    } yield {
       resultCalc(result1, result2)
+    }
   }
 
   println("expression: " + Await.result(expression(), 30 seconds))
